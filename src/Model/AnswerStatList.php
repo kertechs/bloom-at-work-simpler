@@ -18,11 +18,11 @@ class AnswerStatList extends \ArrayIterator
     {
         parent::__construct();
         foreach($answers as $answer) {
-            $this->addAnswer($answer);
+            $this->add($answer);
         }
     }
 
-    private function addAnswer(AnswerStat $answer) :void
+    public function add(AnswerStat $answer) :void
     {
         $this->answers[] = $answer;
     }
@@ -30,5 +30,10 @@ class AnswerStatList extends \ArrayIterator
     public function getAll() :array
     {
         return $this->answers;
+    }
+
+    public function count() :int
+    {
+        return count($this->answers);
     }
 }
