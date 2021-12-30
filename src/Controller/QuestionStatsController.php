@@ -18,11 +18,8 @@ class QuestionStatsController extends AbstractController
 {
     /**
      * @Route("/csv/upload", name="question_stats_upload", methods={"POST", "GET"})
-     *
-     * @param Request $request
-     * @return JsonResponse
      */
-    public function readFile(Request $request)
+    public function readFile(Request $request): JsonResponse
     {
         return new JsonResponse('Coucou');
     }
