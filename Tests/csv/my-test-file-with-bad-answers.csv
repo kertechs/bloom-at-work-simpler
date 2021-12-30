@@ -1,0 +1,11 @@
+# Coucou Hibou
+1.0
+bad answer because only floats are allowed
+
+2.0
+
+2.0 bad answer because only floats are allowed. Ensure automatic type conversion won't work
+1.0;2.0 bad answer because 2 columns are provided while only one is expected
+
+
+
