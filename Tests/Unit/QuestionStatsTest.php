@@ -18,6 +18,18 @@ class QuestionStatsTest extends  TestCase
         }
     }
 
+    public function testQuestionCannotBeCreatedFromInvalidLabel()
+    {
+        $label = '';
+
+        try {
+            $question = new \BloomAtWork\Model\QuestionStats($label);
+            $this->fail('Question should be created from valid label');
+        } catch (\Throwable $e) {
+            $this->assertStringContainsString('Invalid question label', $e->getMessage());
+        }
+    }
+
     public function testAnswersStatCanBeAddedToQuestionStat()
     {
         $label = 'testQuestion';

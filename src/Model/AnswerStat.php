@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace BloomAtWork\Model;
 
+/**
+ * Class AnswerStat
+ * @package BloomAtWork\Model
+ * @description Aims to represent one of the Answers given by an employee.
+ * The answer values has to be a float value between 0 and 10.
+ */
 class AnswerStat
 {
     public function __construct(private float $value)
