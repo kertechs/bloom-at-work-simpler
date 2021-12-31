@@ -31,7 +31,7 @@ class DumbTest extends WebTestCase
             'POST',
             '/question-stats/csv/upload',
             [],
-            [new UploadedFile($fileName, 'file.csv')]
+            ['csvfile' => new UploadedFile($fileName, 'file.csv')]
         );
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

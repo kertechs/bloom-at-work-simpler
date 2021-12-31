@@ -42,13 +42,7 @@ class QuestionStats
     //Validation rules for the csv file
     private function validateFile() :void
     {
-        if (!$this->csvFile->isReadable()) {
-            throw new \RuntimeException('File is not readable');
-        }
-
-        if (!$this->csvFile->isFile()) {
-            throw new \RuntimeException('File is not a file');
-        }
+        //todo: Discuss with team : worth it or not tests on isReadable ? isDir ? ...
 
         if (!$this->csvFile->getSize()) {
             throw new \RuntimeException('File is empty');
@@ -82,8 +76,8 @@ class QuestionStats
         $this->csvFile->setFlags(\SplFileObject::READ_CSV);
         $this->csvFile->setCsvControl(';');
         $this->csvFile->rewind();
+        //$this->csvFile->seek(self::ANSWER_STAT_START_LINE); //Buggy. Added a workaround
         $this->csvFile->fgetcsv(); //skip the first line
-        //$this->csvFile->seek(self::ANSWER_STAT_START_LINE);
 
         $answerStatList = new AnswerStatList();
         while (!$this->csvFile->eof()) {

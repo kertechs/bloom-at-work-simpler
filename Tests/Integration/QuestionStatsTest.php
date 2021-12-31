@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BloomAtWork\Tests\Integration;
 
 use BloomAtWork\Model\AnswerStat;
@@ -11,8 +13,7 @@ class QuestionStatsTest extends \PHPUnit\Framework\TestCase
     private string $staticInvalidQuestionCsvFile;
     private string $staticInvalidAnswersCsvFile;
     private string $staticMissingCsvFile;
-
-    private \BloomAtWork\Service\QuestionStats $service;
+    private string $staticEmptyCsvFile;
 
     public function setUp(): void
     {
@@ -21,13 +22,21 @@ class QuestionStatsTest extends \PHPUnit\Framework\TestCase
         $this->staticInvalidQuestionCsvFile = __DIR__ . '/../csv/my-bad-test-file.csv';
         $this->staticInvalidAnswersCsvFile = __DIR__ . '/../csv/my-test-file-with-bad-answers.csv';
         $this->staticMissingCsvFile = 'Scooby Doo where are you ?';
+        $this->staticEmptyCsvFile = __DIR__ . '/../csv/my-empty-test-file.csv';
     }
 
     public function testQuestionStatServiceCantBeInstantiatedWithInvalidFile(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Unable to open file');
-        $this->service = new \BloomAtWork\Service\QuestionStats($this->staticMissingCsvFile);
+        $service = new \BloomAtWork\Service\QuestionStats($this->staticMissingCsvFile);
+    }
+
+    public function testQuestionStatServiceCantBeInstantiatedWithEmptyFile(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unable to open file');
+        $service = new \BloomAtWork\Service\QuestionStats($this->staticEmptyCsvFile);
     }
 
     public function testQuestionStatCanBeCreatedFromValidCsvFile()
